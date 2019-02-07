@@ -3,6 +3,9 @@ using System.IO;
 
 namespace Capstone.Classes
 {
+    /// <summary>
+    /// Instantiates purchase menu
+    /// </summary>
     public class PurchaseMenu
     {
         public void Run(VendingMachine vendingMachine)
@@ -21,14 +24,17 @@ namespace Capstone.Classes
 
                 if (choice == "1")
                 {
+                    // both logs the activity to add funds and add funds to the balance
                     this.CreateLog(vendingMachine.Balance, vendingMachine.AddFunds(), "FEED MONEY");
                 }
                 else if (choice == "2")
                 {
+                    // logs product ID choice
                     this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(), "Item");
                 }
                 else if (choice == "3")
                 {
+                    // makes change on remaining balance
                     vendingMachine.MakeChange();
                 }
                 else if (choice.ToLower() == "q")
@@ -44,6 +50,12 @@ namespace Capstone.Classes
             }
         }
 
+        /// <summary>
+        /// Creates log file for each transaction (feeding money, withdrawing Item)
+        /// </summary>
+        /// <param name="totalBalance">machine balance</param>
+        /// <param name="updatedBalance">new balance</param>
+        /// <param name="logAction">log activity</param>
         public void CreateLog(decimal totalBalance, decimal updatedBalance, string logAction)
         {
             string logMessage = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm")} {totalBalance} {updatedBalance} {logAction}";

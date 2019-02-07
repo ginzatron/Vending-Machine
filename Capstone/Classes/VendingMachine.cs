@@ -12,7 +12,7 @@ namespace Capstone.Classes
         private Dictionary<string, Item> stock = new Dictionary<string, Item>();
         private ShoppingCart cart = new ShoppingCart();
 
-        public decimal Balance { get; set; }
+        public decimal Balance { get; private set; }
 
         /// <summary>
         /// Initializes new instance of VendingMachine.

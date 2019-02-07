@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Capstone.Classes
 {
+    /// <summary>
+    /// Instantiates program to run at main menu
+    /// </summary>
     public class MainMenu
     {
         public void Run(VendingMachine vendingMachine)
@@ -19,10 +22,12 @@ namespace Capstone.Classes
 
                 if (choice == "1")
                 {
+                    // Display read in inventory
                     vendingMachine.DisplayItems();
                 }
                 else if (choice == "2")
                 {
+                    // instantiate purchase menu and pass vendingMachine object
                     PurchaseMenu purchaseMenu = new PurchaseMenu();
                     purchaseMenu.Run(vendingMachine);
                 }
