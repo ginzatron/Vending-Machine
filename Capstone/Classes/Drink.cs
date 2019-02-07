@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    class Drink
+    public class Drink : Item
     {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Glug Glug, Yum!");
+        }
     }
 }
