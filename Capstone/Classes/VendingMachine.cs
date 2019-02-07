@@ -29,10 +29,28 @@ namespace Capstone.Classes
                     string[] items = sr.ReadLine().Split("|");
 
                     // create new item object with read in values (slot location, name, price, type)
-                    Item item = new Item(items[0], items[1], decimal.Parse(items[2]), items[3]);
+                    //Item item = new Item(items[0], items[1], decimal.Parse(items[2]), items[3]);
+                    if (items[3] == "Gum")
+                    {
+                        Item item = new Gum(items[0], items[1], decimal.Parse(items[2]), items[3]);
+                        this.stock[items[0]] = item;
+                    }
+                    else if (items[3] == "Drink")
+                    {
+                        Item item = new Drink(items[0], items[1], decimal.Parse(items[2]), items[3]);
+                        this.stock[items[0]] = item;
+                    }
+                    else if (items[3] == "Chip")
+                    {
+                        Item item = new Chip(items[0], items[1], decimal.Parse(items[2]), items[3]);
+                        this.stock[items[0]] = item;
+                    }
+                    else if (items[3] == "Candy")
+                    {
+                        Item item = new Candy(items[0], items[1], decimal.Parse(items[2]), items[3]);
+                        this.stock[items[0]] = item;
+                    }
 
-                    // assigning dictionary key as the slot and value as the itme object
-                    this.stock[items[0]] = item;
                 }
             }
         }
