@@ -1,4 +1,5 @@
 ﻿using System;
+using Capstone.Classes;
 
 namespace Capstone
 {
@@ -6,7 +7,12 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //instantiate fully stocked default vending machine
+            VendingMachine vendingMachine = new VendingMachine();
+            //instantiate a new instance of the main program menu to run from
+            MainMenu mainMenu = new MainMenu();
+            //pass staged vending machine to staged mainMenu
+            mainMenu.Run(vendingMachine);
         }
     }
 }
