@@ -14,6 +14,8 @@ namespace Capstone.Classes
 
         public decimal Balance { get; private set; }
 
+        public string LoggingInfo { get; set; }
+
         /// <summary>
         /// Initializes new instance of VendingMachine.
         /// </summary>
@@ -108,6 +110,9 @@ namespace Capstone.Classes
 
                 Console.WriteLine($"{this.stock[itemSlot].Name} purchased");
                 this.cart.Add(this.stock[itemSlot]);
+
+                this.LoggingInfo = $"{itemSlot} {this.stock[itemSlot].Name}";
+               
             }
             else if (this.stock[itemSlot].Price > this.Balance)
             {
