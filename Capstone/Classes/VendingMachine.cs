@@ -47,9 +47,10 @@ namespace Capstone.Classes
                 string key = kvp.Key;
                 Item value = kvp.Value;
 
-                if (value.Quantity == 0)
+                string quantityDisplay = value.Quantity.ToString();
+                if (value.Quantity == 0) quantityDisplay = "SOLD OUT";
 
-                Console.WriteLine($"{value.SlotLocationn,-1} {value.Name,-20} Price {value.Price,-8:C2} {value.Type,-7} Available {value.Quantity}");
+                Console.WriteLine($"{value.SlotLocationn,-1} {value.Name,-20} Price {value.Price,-8:C2} {value.Type,-7} Available {quantityDisplay}");
             }
             Console.WriteLine();
         }
@@ -59,7 +60,7 @@ namespace Capstone.Classes
 
         }
 
-        public void AddFunds()
+        public decimal AddFunds()
         {
             List<int> nums = new List<int>() { 1, 2, 5, 10 };
 
@@ -71,12 +72,12 @@ namespace Capstone.Classes
                 {
                     Balance += enteredBills;
                 }
-                break;
+                Console.Clear();
+                return Balance;
             }
-            Console.Clear();
         }
 
-        public void SelectProduct()
+        public decimal SelectProduct()
         {
             Console.WriteLine("Please enter LetterNumber item slot to purchase from");
             string itemSlot = Console.ReadLine().ToUpper();
@@ -84,9 +85,10 @@ namespace Capstone.Classes
             if (stock.ContainsKey(itemSlot) && stock[itemSlot].Price<Balance && stock[itemSlot].Quantity > 0)
             {
                 Balance -= stock[itemSlot].Price;
-                stock[itemSlot].Quantity--;
+                (stock[itemSlot].Quantity)--;
                 cart.ItemsPurchased(stock[itemSlot]);
             }
+            return Balance;
         }
     }
 }

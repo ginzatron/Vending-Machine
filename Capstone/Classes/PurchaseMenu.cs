@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Capstone.Classes;
+using System.IO;
 
 namespace Capstone.Classes
 {
@@ -24,11 +25,15 @@ namespace Capstone.Classes
 
                 if (choice == "1")
                 {
-                    vendingMachine.AddFunds();
+                    CreateLog(vendingMachine.Balance, vendingMachine.AddFunds(),"FEED MONEY");
                 }
                 else if (choice == "2")
                 {
-                    vendingMachine.SelectProduct();
+                    CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(), "Item");
+                }
+                else if (choice == "3")
+                {
+
                 }
                 else if (choice.ToLower() == "q") break;
                 else
@@ -41,6 +46,26 @@ namespace Capstone.Classes
             }
 
         }
+        //slot.name slot
+        public void CreateLog(decimal totalBalance, decimal updatedBalance, string logAction)
+        {
+            string logMessage = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm")} {totalBalance} {updatedBalance} {logAction}";
 
+            try
+            {
+                using (StreamWriter sw = new StreamWriter("Log.txt", true))
+                {
+                    sw.WriteLine($"{logMessage}");
+                }
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"Error writing to log: {ex.Message}");
+            }
+
+        }
     }
+
+        
+    
 }
