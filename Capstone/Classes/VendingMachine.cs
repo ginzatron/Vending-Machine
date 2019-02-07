@@ -55,5 +55,22 @@ namespace Capstone.Classes
         {
 
         }
+
+        public void AddFunds()
+        {
+            List<int> nums = new List<int>() { 1, 2, 5, 10 };
+
+            while (true)
+            {
+                Console.Write("Please Enter Dollar Amount 1,2,5 or 10 $");
+                int enteredBills = int.Parse(Console.ReadLine());
+                if (nums.Contains(enteredBills))
+                {
+                    Balance += enteredBills;
+                }
+                break;
+            }
+            Console.Clear();
+        }
     }
 }

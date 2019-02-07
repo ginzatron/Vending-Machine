@@ -7,11 +7,15 @@ namespace Capstone.Classes
 {
     public class PurchaseMenu
     {
+        
         public void Run(VendingMachine vendingMachine)
         {
+
+            Console.Clear();
             while (true)
             {
-                Console.WriteLine("1. Add Funds");
+                vendingMachine.DisplayItems();
+                Console.WriteLine($"1. Add Funds Balance: ${vendingMachine.Balance}");
                 Console.WriteLine("2. Enter Product ID");
                 Console.WriteLine("Q. Finish vending");
                 Console.Write("Choice: ");
@@ -20,7 +24,7 @@ namespace Capstone.Classes
 
                 if (choice == "1")
                 {
-                    //add funds to vending machine balance
+                    vendingMachine.AddFunds();
                 }
                 else if (choice == "2")
                 {
