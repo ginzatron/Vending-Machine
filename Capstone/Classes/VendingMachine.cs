@@ -29,7 +29,7 @@ namespace Capstone.Classes
                     string[] items = sr.ReadLine().Split("|");
 
                     // create new item object with read in values (slot location, name, price, type)
-                    //Item item = new Item(items[0], items[1], decimal.Parse(items[2]), items[3]);
+                    // Item item = new Item(items[0], items[1], decimal.Parse(items[2]), items[3]);
                     if (items[3] == "Gum")
                     {
                         Item item = new Gum(items[0], items[1], decimal.Parse(items[2]), items[3]);
@@ -50,7 +50,6 @@ namespace Capstone.Classes
                         Item item = new Candy(items[0], items[1], decimal.Parse(items[2]), items[3]);
                         this.stock[items[0]] = item;
                     }
-
                 }
             }
         }
