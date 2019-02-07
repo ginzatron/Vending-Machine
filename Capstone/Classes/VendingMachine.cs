@@ -55,11 +55,6 @@ namespace Capstone.Classes
             Console.WriteLine();
         }
 
-        public void UpdateQuantity()
-        {
-
-        }
-
         public decimal AddFunds()
         {
             List<int> nums = new List<int>() { 1, 2, 5, 10 };

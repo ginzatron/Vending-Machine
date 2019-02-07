@@ -43,7 +43,6 @@ namespace Capstone.Classes
                     Console.WriteLine("Please try again");
                     Console.WriteLine();
                 }
-
             }
         }
 

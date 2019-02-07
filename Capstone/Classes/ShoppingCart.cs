@@ -14,8 +14,6 @@ namespace Capstone.Classes
             cart.Add(item);
         }
 
-        
-        
     }
 
 }
