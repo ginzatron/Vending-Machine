@@ -3,7 +3,7 @@
     /// <summary>
     /// instantiates new object for each item in list of items
     /// </summary>
-    public class Item
+    public abstract class Item
     {
         public string Name { get; }
 
@@ -14,10 +14,6 @@
         public string SlotLocationn { get; }
 
         public string Type { get; }
-
-        public Item()
-        {
-        }
 
         /// <summary>
         /// Constructor using parameters read in from file in vendig machine class
@@ -35,9 +31,6 @@
             this.Type = type;
         }
 
-        public virtual void MakeSound()
-        {
-            // make specified item sound on consumption
-        }
+        public abstract void MakeSound();
     }
 }
