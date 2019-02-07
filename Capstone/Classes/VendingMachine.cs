@@ -81,12 +81,13 @@ namespace Capstone.Classes
         {
             Console.WriteLine("Please enter LetterNumber item slot to purchase from");
             string itemSlot = Console.ReadLine().ToUpper();
-
+            string logMessage = "";
             if (stock.ContainsKey(itemSlot) && stock[itemSlot].Price<Balance && stock[itemSlot].Quantity > 0)
             {
                 Balance -= stock[itemSlot].Price;
                 (stock[itemSlot].Quantity)--;
                 cart.ItemsPurchased(stock[itemSlot]);
+                //logMessage = $"{stock[itemSlot].Name}  {itemSlot} {Balance}";
             }
             return Balance;
         }
