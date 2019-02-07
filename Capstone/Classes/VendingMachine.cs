@@ -130,7 +130,7 @@ namespace Capstone.Classes
             return this.Balance;
         }
 
-        public void MakeChange()
+        public decimal MakeChange()
         {
             this.Balance *= 100;
             int quarters = 0;
@@ -162,6 +162,7 @@ namespace Capstone.Classes
             Console.WriteLine($"{this.Balance:C2} remaining");
             Console.WriteLine();
             this.ConsumeItems();
+            return this.Balance;
         }
 
         public void ConsumeItems()

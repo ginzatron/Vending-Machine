@@ -35,7 +35,7 @@ namespace Capstone.Classes
                 else if (choice == "3")
                 {
                     // makes change on remaining balance
-                    vendingMachine.MakeChange();
+                    this.CreateLog(vendingMachine.Balance, vendingMachine.MakeChange(), "GIVE CHANGE");
                 }
                 else if (choice.ToLower() == "q")
                 {
