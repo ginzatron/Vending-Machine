@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Capstone.Classes;
 using System.IO;
 
 namespace Capstone.Classes
 {
     public class PurchaseMenu
     {
-        
         public void Run(VendingMachine vendingMachine)
         {
-
             Console.Clear();
             while (true)
             {
@@ -26,17 +21,20 @@ namespace Capstone.Classes
 
                 if (choice == "1")
                 {
-                    CreateLog(vendingMachine.Balance, vendingMachine.AddFunds(),"FEED MONEY");
+                    this.CreateLog(vendingMachine.Balance, vendingMachine.AddFunds(), "FEED MONEY");
                 }
                 else if (choice == "2")
                 {
-                    CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(), "Item");
+                    this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(), "Item");
                 }
                 else if (choice == "3")
                 {
                     vendingMachine.MakeChange();
                 }
-                else if (choice.ToLower() == "q") break;
+                else if (choice.ToLower() == "q")
+                {
+                    break;
+                }
                 else
                 {
                     Console.WriteLine("Choice Not Valid");
@@ -62,10 +60,6 @@ namespace Capstone.Classes
             {
                 Console.WriteLine($"Error writing to log: {ex.Message}");
             }
-
         }
     }
-
-        
-    
 }
