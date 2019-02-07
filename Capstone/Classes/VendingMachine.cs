@@ -10,7 +10,7 @@ namespace Capstone.Classes
     public class VendingMachine
     {
         private Dictionary<string, Item> stock = new Dictionary<string, Item>();
-        private ShoppingCart cart = new ShoppingCart();
+        private List<Item> cart = new List<Item>();
 
         public decimal Balance { get; private set; }
 
@@ -105,7 +105,9 @@ namespace Capstone.Classes
             {
                 this.Balance -= this.stock[itemSlot].Price;
                 this.stock[itemSlot].Quantity--;
-                this.cart.ItemsPurchased(this.stock[itemSlot]);
+
+                Console.WriteLine($"{this.stock[itemSlot].Name} purchased");
+                this.cart.Add(this.stock[itemSlot]);
             }
             else if (this.stock[itemSlot].Price > this.Balance)
             {
@@ -154,6 +156,15 @@ namespace Capstone.Classes
             Console.WriteLine($"{quarters} Quarter(s), {dimes} Dime(s), {nickels} nickel(s)");
             Console.WriteLine($"{this.Balance:C2} remaining");
             Console.WriteLine();
+            this.ConsumeItems();
+        }
+
+        public void ConsumeItems()
+        {
+            foreach (Item item in this.cart)
+            {
+                item.MakeSound();
+            }
         }
     }
 }

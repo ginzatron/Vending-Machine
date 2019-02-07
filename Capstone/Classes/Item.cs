@@ -17,16 +17,15 @@
 
         public Item()
         {
-
         }
 
         /// <summary>
-        /// constructor using parameters read in from file in vendig machine class
+        /// Constructor using parameters read in from file in vendig machine class
         /// </summary>
-        /// <param name="slotLocation"></param>
-        /// <param name="name"></param>
-        /// <param name="price"></param>
-        /// <param name="type"></param>
+        /// <param name="slotLocation">location</param>
+        /// <param name="name">name</param>
+        /// <param name="price">price</param>
+        /// <param name="type">type</param>
         public Item(string slotLocation, string name, decimal price, string type)
         {
             this.Name = name;

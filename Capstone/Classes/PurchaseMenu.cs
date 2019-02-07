@@ -30,7 +30,7 @@ namespace Capstone.Classes
                 else if (choice == "2")
                 {
                     // logs product ID choice
-                    this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(), "Item");
+                    this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(), "temp");
                 }
                 else if (choice == "3")
                 {
