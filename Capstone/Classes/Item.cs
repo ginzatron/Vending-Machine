@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Capstone.Classes
+﻿namespace Capstone.Classes
 {
     /// <summary>
     /// instantiates new object for each item in list of items
@@ -10,9 +6,13 @@ namespace Capstone.Classes
     public class Item
     {
         public string Name { get; }
+
         public decimal Price { get;}
+
         public int Quantity { get; set; }
+
         public string SlotLocationn { get; }
+
         public string Type { get; }
 
         public Item()
@@ -38,7 +38,7 @@ namespace Capstone.Classes
 
         public virtual void MakeSound()
         {
-            //make specified item sound on consumption
+            // make specified item sound on consumption
         }
     }
 }

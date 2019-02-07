@@ -6,10 +6,8 @@ namespace Capstone.Classes
 {
     public class MainMenu
     {
-        
         public void Run(VendingMachine vendingMachine)
         {
-
             while (true)
             {
                 Console.WriteLine("1. Display Vengind Machinee Items.");
@@ -38,7 +36,6 @@ namespace Capstone.Classes
                     Console.WriteLine();
                 }
             }
-
         }
     }
 }
