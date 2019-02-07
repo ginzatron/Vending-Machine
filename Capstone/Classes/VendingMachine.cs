@@ -11,6 +11,7 @@ namespace Capstone.Classes
     public class VendingMachine
     {
         Dictionary<string, Item> stock = new Dictionary<string, Item>();
+        ShoppingCart cart = new ShoppingCart();
 
         public decimal Balance { get; set; }
 
@@ -71,6 +72,17 @@ namespace Capstone.Classes
                 break;
             }
             Console.Clear();
+        }
+
+        public void SelectProduct()
+        {
+            Console.WriteLine("Please enter LetterNumber item slot to purchase from");
+            string itemSlot = Console.ReadLine().ToUpper();
+
+            if (stock.ContainsKey(itemSlot))
+            {
+                cart.ItemsPurchased(stock[itemSlot])
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Capstone.Classes
                 }
                 else if (choice == "2")
                 {
-
+                    //select product
                 }
                 else if (choice.ToLower() == "q") break;
                 else
