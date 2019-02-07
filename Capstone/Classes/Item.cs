@@ -10,7 +10,7 @@ namespace Capstone.Classes
     public class Item
     {
         public string Name { get; }
-        public decimal Price { get; }
+        public decimal Price { get;}
         public int Quantity { get; set; }
         public string SlotLocationn { get; }
         public string Type { get; }

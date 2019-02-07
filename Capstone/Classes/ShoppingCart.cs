@@ -10,6 +10,7 @@ namespace Capstone.Classes
 
         public void ItemsPurchased(Item item)
         {
+            Console.WriteLine($"{item.Name} purchased");
             cart.Add(item);
         }
     }

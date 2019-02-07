@@ -47,7 +47,9 @@ namespace Capstone.Classes
                 string key = kvp.Key;
                 Item value = kvp.Value;
 
-                Console.WriteLine($"{value.SlotLocationn} {value.Name} Price {value.Price:C2} {value.Type} Available {value.Quantity}");
+                if (value.Quantity == 0)
+
+                Console.WriteLine($"{value.SlotLocationn,-1} {value.Name,-20} Price {value.Price,-8:C2} {value.Type,-7} Available {value.Quantity}");
             }
             Console.WriteLine();
         }
@@ -79,9 +81,11 @@ namespace Capstone.Classes
             Console.WriteLine("Please enter LetterNumber item slot to purchase from");
             string itemSlot = Console.ReadLine().ToUpper();
 
-            if (stock.ContainsKey(itemSlot))
+            if (stock.ContainsKey(itemSlot) && stock[itemSlot].Price<Balance && stock[itemSlot].Quantity > 0)
             {
-                cart.ItemsPurchased(stock[itemSlot])
+                Balance -= stock[itemSlot].Price;
+                stock[itemSlot].Quantity--;
+                cart.ItemsPurchased(stock[itemSlot]);
             }
         }
     }
