@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace Capstone.Classes
@@ -10,13 +9,13 @@ namespace Capstone.Classes
     /// </summary>
     public class VendingMachine
     {
-        Dictionary<string, Item> stock = new Dictionary<string, Item>();
-        ShoppingCart cart = new ShoppingCart();
+        private Dictionary<string, Item> stock = new Dictionary<string, Item>();
+        private ShoppingCart cart = new ShoppingCart();
 
         public decimal Balance { get; set; }
 
         /// <summary>
-        /// contruct vending machine of item objects
+        /// Initializes new instance of VendingMachine.
         /// </summary>
         public VendingMachine()
         {
@@ -26,12 +25,14 @@ namespace Capstone.Classes
             {
                 while (!sr.EndOfStream)
                 {
-                    //string array of all read in values
+                    // string array of all read in values
                     string[] items = sr.ReadLine().Split("|");
-                    //create new item object with read in values (slot location, name, price, type)
+
+                    // create new item object with read in values (slot location, name, price, type)
                     Item item = new Item(items[0], items[1], decimal.Parse(items[2]), items[3]);
-                    //assigning dictionary key as the slot and value as the itme object
-                    stock[items[0]] = item;
+
+                    // assigning dictionary key as the slot and value as the itme object
+                    this.stock[items[0]] = item;
                 }
             }
         }
@@ -41,23 +42,22 @@ namespace Capstone.Classes
         /// </summary>
         public void DisplayItems()
         {
-            //loop through dictioary that uses the slot location as the key and the item object as the value
-            foreach (KeyValuePair<string, Item> kvp in stock)
+            // loop through dictioary that uses the slot location as the key and the item object as the value
+            foreach (KeyValuePair<string, Item> kvp in this.stock)
             {
                 string key = kvp.Key;
                 Item value = kvp.Value;
 
                 string quantityDisplay = value.Quantity.ToString();
-                if (value.Quantity == 0) quantityDisplay = "SOLD OUT";
+                if (value.Quantity == 0)
+                {
+                    quantityDisplay = "SOLD OUT";
+                }
 
-                Console.WriteLine($"{value.SlotLocationn,-1} {value.Name,-20} Price {value.Price,-8:C2} {value.Type,-7} Available {quantityDisplay}");
+                Console.WriteLine($"{value.SlotLocationn, -1} {value.Name, -20} Price {value.Price, -8:C2} {value.Type, -7} Available {quantityDisplay}");
             }
+
             Console.WriteLine();
-        }
-
-        public void UpdateQuantity()
-        {
-
         }
 
         public decimal AddFunds()
@@ -70,10 +70,11 @@ namespace Capstone.Classes
                 int enteredBills = int.Parse(Console.ReadLine());
                 if (nums.Contains(enteredBills))
                 {
-                    Balance += enteredBills;
+                    this.Balance += enteredBills;
                 }
+
                 Console.Clear();
-                return Balance;
+                return this.Balance;
             }
         }
 
@@ -83,57 +84,55 @@ namespace Capstone.Classes
             string itemSlot = Console.ReadLine().ToUpper();
             Console.WriteLine();
 
-            if (stock.ContainsKey(itemSlot) && stock[itemSlot].Price < Balance && stock[itemSlot].Quantity > 0)
+            if (this.stock.ContainsKey(itemSlot) && this.stock[itemSlot].Price < this.Balance && this.stock[itemSlot].Quantity > 0)
             {
-                Balance -= stock[itemSlot].Price;
-                (stock[itemSlot].Quantity)--;
-                cart.ItemsPurchased(stock[itemSlot]);
+                this.Balance -= this.stock[itemSlot].Price;
+                this.stock[itemSlot].Quantity--;
+                this.cart.ItemsPurchased(this.stock[itemSlot]);
             }
-
-            else if (stock[itemSlot].Price > Balance)
+            else if (this.stock[itemSlot].Price > this.Balance)
             {
                 Console.WriteLine("PLEASE ADD MORE FUNDS!\n");
             }
-
-            else if (stock[itemSlot].Quantity == 0)
+            else if (this.stock[itemSlot].Quantity == 0)
             {
                 Console.WriteLine("ITEM SOLD OUT!\n");
             }
-            return Balance;
+
+            return this.Balance;
         }
 
         public void MakeChange()
         {
-            Balance *= 100;
+            this.Balance *= 100;
             int quarters = 0;
             int dimes = 0;
             int nickels = 0;
 
-            Console.WriteLine($"Here is the remaining balance of {Balance/100}");
+            Console.WriteLine($"Here is the remaining balance of {this.Balance/100}");
 
-            while (Balance > 0)
+            while (this.Balance > 0)
             {
-                if (Balance % 25 == 0 && Balance >= 25)
+                if (this.Balance % 25 == 0 && this.Balance >= 25)
                 {
                     quarters++;
-                    Balance -= 25;
+                    this.Balance -= 25;
                 }
-                else if (Balance % 10 == 0 && Balance >= 10)
+                else if (this.Balance % 10 == 0 && this.Balance >= 10)
                 {
                     dimes++;
-                    Balance -= 10;
+                    this.Balance -= 10;
                 }
-                else if (Balance %5 == 0 && Balance >=5)
+                else if (this.Balance %5 == 0 && this.Balance >=5)
                 {
                     nickels++;
-                    Balance -= 5;
+                    this.Balance -= 5;
                 }
             }
+
             Console.WriteLine($"{quarters} Quarter(s), {dimes} Dime(s), {nickels} nickel(s)");
-            Console.WriteLine($"{Balance:C2} remaining");
+            Console.WriteLine($"{this.Balance:C2} remaining");
             Console.WriteLine();
-
         }
-
     }
 }
