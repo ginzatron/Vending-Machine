@@ -79,17 +79,61 @@ namespace Capstone.Classes
 
         public decimal SelectProduct()
         {
-            Console.WriteLine("Please enter LetterNumber item slot to purchase from");
+            Console.Write("Please enter LetterNumber item slot to purchase from: ");
             string itemSlot = Console.ReadLine().ToUpper();
-            string logMessage = "";
-            if (stock.ContainsKey(itemSlot) && stock[itemSlot].Price<Balance && stock[itemSlot].Quantity > 0)
+            Console.WriteLine();
+
+            if (stock.ContainsKey(itemSlot) && stock[itemSlot].Price < Balance && stock[itemSlot].Quantity > 0)
             {
                 Balance -= stock[itemSlot].Price;
                 (stock[itemSlot].Quantity)--;
                 cart.ItemsPurchased(stock[itemSlot]);
-                //logMessage = $"{stock[itemSlot].Name}  {itemSlot} {Balance}";
+            }
+
+            else if (stock[itemSlot].Price > Balance)
+            {
+                Console.WriteLine("PLEASE ADD MORE FUNDS!\n");
+            }
+
+            else if (stock[itemSlot].Quantity == 0)
+            {
+                Console.WriteLine("ITEM SOLD OUT!\n");
             }
             return Balance;
         }
+
+        public void MakeChange()
+        {
+            Balance *= 100;
+            int quarters = 0;
+            int dimes = 0;
+            int nickels = 0;
+
+            Console.WriteLine($"Here is the remaining balance of {Balance/100}");
+
+            while (Balance > 0)
+            {
+                if (Balance % 25 == 0 && Balance >= 25)
+                {
+                    quarters++;
+                    Balance -= 25;
+                }
+                else if (Balance % 10 == 0 && Balance >= 10)
+                {
+                    dimes++;
+                    Balance -= 10;
+                }
+                else if (Balance %5 == 0 && Balance >=5)
+                {
+                    nickels++;
+                    Balance -= 5;
+                }
+            }
+            Console.WriteLine($"{quarters} Quarter(s), {dimes} Dime(s), {nickels} nickel(s)");
+            Console.WriteLine($"{Balance:C2} remaining");
+            Console.WriteLine();
+
+        }
+
     }
 }

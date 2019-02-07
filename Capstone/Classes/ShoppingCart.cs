@@ -13,5 +13,9 @@ namespace Capstone.Classes
             Console.WriteLine($"{item.Name} purchased");
             cart.Add(item);
         }
+
+        
+        
     }
+
 }

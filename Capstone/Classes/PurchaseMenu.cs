@@ -18,7 +18,8 @@ namespace Capstone.Classes
                 vendingMachine.DisplayItems();
                 Console.WriteLine($"1. Add Funds Balance: ${vendingMachine.Balance}");
                 Console.WriteLine("2. Enter Product ID");
-                Console.WriteLine("Q. Finish vending");
+                Console.WriteLine("3. Finish vending");
+                Console.WriteLine("Q  Quit");
                 Console.Write("Choice: ");
                 string choice = Console.ReadLine();
                 Console.WriteLine();
@@ -33,7 +34,7 @@ namespace Capstone.Classes
                 }
                 else if (choice == "3")
                 {
-
+                    vendingMachine.MakeChange();
                 }
                 else if (choice.ToLower() == "q") break;
                 else
@@ -44,9 +45,8 @@ namespace Capstone.Classes
                 }
 
             }
-
         }
-        //slot.name slot
+
         public void CreateLog(decimal totalBalance, decimal updatedBalance, string logAction)
         {
             string logMessage = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm")} {totalBalance} {updatedBalance} {logAction}";
