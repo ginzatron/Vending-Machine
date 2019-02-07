@@ -98,6 +98,10 @@ namespace Capstone.Classes
             {
                 Console.WriteLine("ITEM SOLD OUT!\n");
             }
+            else if (!this.stock.ContainsKey(itemSlot))
+            {
+                Console.WriteLine("Selection not valid");
+            }
 
             return this.Balance;
         }
