@@ -9,15 +9,12 @@ namespace Capstone.Classes
     /// </summary>
     public class VendingMachine
     {
-        public Dictionary<string, Item> stock = new Dictionary<string, Item>();
-        public List<Item> cart = new List<Item>();
+        public Dictionary<string, Item> Stock = new Dictionary<string, Item>();
+        public List<Item> Cart = new List<Item>();
 
         public decimal Balance { get; set; }
 
         public string LoggingInfo { get; set; }
-        // To test our make change
-
-        public string MakeChangeMessage { get; private set; }
 
         /// <summary>
         /// Initializes new instance of VendingMachine.
@@ -38,22 +35,22 @@ namespace Capstone.Classes
                     if (items[3] == "Gum")
                     {
                         Item item = new Gum(items[0], items[1], decimal.Parse(items[2]), items[3]);
-                        this.stock[items[0]] = item;
+                        this.Stock[items[0]] = item;
                     }
                     else if (items[3] == "Drink")
                     {
                         Item item = new Drink(items[0], items[1], decimal.Parse(items[2]), items[3]);
-                        this.stock[items[0]] = item;
+                        this.Stock[items[0]] = item;
                     }
                     else if (items[3] == "Chip")
                     {
                         Item item = new Chip(items[0], items[1], decimal.Parse(items[2]), items[3]);
-                        this.stock[items[0]] = item;
+                        this.Stock[items[0]] = item;
                     }
                     else if (items[3] == "Candy")
                     {
                         Item item = new Candy(items[0], items[1], decimal.Parse(items[2]), items[3]);
-                        this.stock[items[0]] = item;
+                        this.Stock[items[0]] = item;
                     }
                 }
             }
@@ -65,7 +62,7 @@ namespace Capstone.Classes
         public void DisplayItems()
         {
             // loop through dictioary that uses the slot location as the key and the item object as the value
-            foreach (KeyValuePair<string, Item> kvp in this.stock)
+            foreach (KeyValuePair<string, Item> kvp in this.Stock)
             {
                 string key = kvp.Key;
                 Item value = kvp.Value;
@@ -91,12 +88,12 @@ namespace Capstone.Classes
 
         public decimal SelectProduct(string itemSlot)
         {
-            this.Balance -= this.stock[itemSlot].Price;
-            this.stock[itemSlot].Quantity--;
+            this.Balance -= this.Stock[itemSlot].Price;
+            this.Stock[itemSlot].Quantity--;
 
-            this.cart.Add(this.stock[itemSlot]);
+            this.Cart.Add(this.Stock[itemSlot]);
 
-            this.LoggingInfo = $"{itemSlot} {this.stock[itemSlot].Name}";
+            this.LoggingInfo = $"{itemSlot} {this.Stock[itemSlot].Name}";
             return this.Balance;
         }
 
@@ -120,21 +117,19 @@ namespace Capstone.Classes
                     dimes++;
                     this.Balance -= 10;
                 }
-                else if (this.Balance %5 == 0 && this.Balance >=5)
+                else if (this.Balance % 5 == 0 && this.Balance >= 5)
                 {
                     nickels++;
                     this.Balance -= 5;
                 }
             }
 
-            // Assigning these are for test purposes only
             return changeMessage = $"{quarters} Quarter(s), {dimes} Dime(s), {nickels} Nickel(s)";
         }
 
         public void ConsumeItems()
         {
-            Console.WriteLine("Time to mange!");
-            foreach (Item item in this.cart)
+            foreach (Item item in this.Cart)
             {
                 item.MakeSound();
             }

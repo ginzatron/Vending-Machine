@@ -59,21 +59,21 @@ namespace Capstone.Classes
                     string itemSlot = Console.ReadLine().ToUpper();
                     Console.WriteLine();
 
-                    if (!vendingMachine.stock.ContainsKey(itemSlot))
+                    if (!vendingMachine.Stock.ContainsKey(itemSlot))
                     {
                         Console.WriteLine("Selection not valid");
                     }
-                    else if (vendingMachine.stock.ContainsKey(itemSlot) && vendingMachine.stock[itemSlot].Price < vendingMachine.Balance && vendingMachine.stock[itemSlot].Quantity > 0)
+                    else if (vendingMachine.Stock.ContainsKey(itemSlot) && vendingMachine.Stock[itemSlot].Price < vendingMachine.Balance && vendingMachine.Stock[itemSlot].Quantity > 0)
                     {
                         // calling select product will return the update balance to be logged, log transaction
                         this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(itemSlot), vendingMachine.LoggingInfo);
-                        Console.WriteLine($"{vendingMachine.stock[itemSlot].Name} purchased");
+                        Console.WriteLine($"{vendingMachine.Stock[itemSlot].Name} purchased");
                     }
-                    else if (vendingMachine.stock[itemSlot].Price > vendingMachine.Balance)
+                    else if (vendingMachine.Stock[itemSlot].Price > vendingMachine.Balance)
                     {
                         Console.WriteLine("PLEASE ADD MORE FUNDS!\n");
                     }
-                    else if (vendingMachine.stock[itemSlot].Quantity == 0)
+                    else if (vendingMachine.Stock[itemSlot].Quantity == 0)
                     {
                         Console.WriteLine("ITEM SOLD OUT!\n");
                     }
@@ -82,14 +82,19 @@ namespace Capstone.Classes
                 {
                     decimal beginningBalance = vendingMachine.Balance;
                     decimal endingBalance;
+
+                    // makes change on remaining balance
                     Console.WriteLine($"Here is the remaining balance of ${vendingMachine.Balance}");
                     Console.WriteLine(vendingMachine.MakeChange());
-                    endingBalance = vendingMachine.Balance;
-                    // makes change on remaining balance
-                    this.CreateLog(vendingMachine.Balance, endingBalance, "GIVE CHANGE");
 
+                    endingBalance = vendingMachine.Balance;
+                    
+                    // create log with starting balance, final balance $0, and message
+                    this.CreateLog(beginningBalance, endingBalance, "GIVE CHANGE");
+
+                    Console.WriteLine("Time to mange!");
                     vendingMachine.ConsumeItems();
-                    vendingMachine.cart.Clear();
+                    vendingMachine.Cart.Clear();
                 }
                 else if (choice.ToLower() == "q")
                 {
