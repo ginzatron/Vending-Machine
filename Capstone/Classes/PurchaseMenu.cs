@@ -61,13 +61,13 @@ namespace Capstone.Classes
 
                     if (!vendingMachine.Stock.ContainsKey(itemSlot))
                     {
-                        Console.WriteLine("Selection not valid");
+                        Console.WriteLine("Selection not valid\n");
                     }
                     else if (vendingMachine.Stock.ContainsKey(itemSlot) && vendingMachine.Stock[itemSlot].Price < vendingMachine.Balance && vendingMachine.Stock[itemSlot].Quantity > 0)
                     {
                         // calling select product will return the update balance to be logged, log transaction
                         this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(itemSlot), vendingMachine.LoggingInfo);
-                        Console.WriteLine($"{vendingMachine.Stock[itemSlot].Name} purchased");
+                        Console.WriteLine($"{vendingMachine.Stock[itemSlot].Name} purchased\n");
                     }
                     else if (vendingMachine.Stock[itemSlot].Price > vendingMachine.Balance)
                     {
