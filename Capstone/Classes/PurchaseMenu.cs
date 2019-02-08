@@ -92,8 +92,9 @@ namespace Capstone.Classes
                     // create log with starting balance, final balance $0, and message
                     this.CreateLog(beginningBalance, endingBalance, "GIVE CHANGE");
 
+                    Console.WriteLine();
                     Console.WriteLine("Time to mange!");
-                    vendingMachine.ConsumeItems();
+                    Console.WriteLine(vendingMachine.ConsumeItems());
                     vendingMachine.Cart.Clear();
                 }
                 else if (choice.ToLower() == "q")

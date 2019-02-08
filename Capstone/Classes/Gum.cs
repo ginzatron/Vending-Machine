@@ -12,9 +12,9 @@ namespace Capstone.Classes
         {
         }
 
-        public override void MakeSound()
+        public override string MakeSound()
         {
-            Console.WriteLine("Chew Chew, Yum!");
+            return "Chew Chew, Yum!";
         }
     }
 }

@@ -127,14 +127,17 @@ namespace Capstone.Classes
             return changeMessage = $"{quarters} Quarter(s), {dimes} Dime(s), {nickels} Nickel(s)";
         }
 
-        public void ConsumeItems()
+        public string ConsumeItems()
         {
+            string allItemsConsumed = string.Empty;
+
             foreach (Item item in this.Cart)
             {
-                item.MakeSound();
+                allItemsConsumed += item.MakeSound() + "\n";
             }
 
             Console.WriteLine();
+            return allItemsConsumed;
         }
     }
 }

@@ -31,6 +31,6 @@
             this.Type = type;
         }
 
-        public abstract void MakeSound();
+        public abstract string MakeSound();
     }
 }
