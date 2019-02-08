@@ -125,3 +125,10 @@ Upon Completion of the program a Log.txt file will be created holding all of the
     02/08/2019 14:27 $10.85  $7.80   A1 Potato Crisps
     02/08/2019 14:27 $7.80   $4.75   A1 Potato Crisps
     02/08/2019 14:28 $4.75   $0.00   GIVE CHANGE
+
+	Upon Completion of the program a SalesReport.txt file is created. Sales report shows the total amount of money made and the quantity of items purchased.
+
+	Potato Crisps | 3
+	Grain Waves | 2
+	**Total Sales** $14.65
+
