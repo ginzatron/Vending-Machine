@@ -42,6 +42,8 @@ namespace Capstone.Classes
                     Console.WriteLine();
                 }
             }
+
+            vendingMachine.TotalSalesReport();
         }
     }
 }

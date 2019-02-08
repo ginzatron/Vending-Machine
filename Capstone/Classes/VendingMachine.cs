@@ -10,11 +10,14 @@ namespace Capstone.Classes
     public class VendingMachine
     {
         public Dictionary<string, Item> Stock = new Dictionary<string, Item>();
+        public Dictionary<string, int> TotalSales = new Dictionary<string, int>();
         public List<Item> Cart = new List<Item>();
 
         public decimal Balance { get; set; }
 
         public string LoggingInfo { get; set; }
+
+        public decimal SalesOutput { get; set; }
 
         /// <summary>
         /// Initializes new instance of VendingMachine.
@@ -88,13 +91,42 @@ namespace Capstone.Classes
 
         public decimal SelectProduct(string itemSlot)
         {
+            string name = this.Stock[itemSlot].Name;
+
             this.Balance -= this.Stock[itemSlot].Price;
             this.Stock[itemSlot].Quantity--;
 
             this.Cart.Add(this.Stock[itemSlot]);
 
             this.LoggingInfo = $"{itemSlot} {this.Stock[itemSlot].Name}";
+
+            if (!this.TotalSales.ContainsKey(itemSlot))
+            {
+                this.TotalSales[name] = 1;
+                this.SalesOutput += this.Stock[itemSlot].Price;
+            }
+            else
+            {
+                this.TotalSales[name] += 1;
+                this.SalesOutput += this.Stock[itemSlot].Price;
+            }
+
             return this.Balance;
+        }
+
+        public void TotalSalesReport()
+        {
+            string itemTotals = string.Empty;
+
+            using (StreamWriter sr = new StreamWriter("salesReport.txt"))
+            {
+                foreach (KeyValuePair<string,int> item in this.TotalSales)
+                {
+                    sr.WriteLine($"{item.Key}|{item.Value}");
+                }
+
+                sr.WriteLine($"**Total Sales** {this.SalesOutput:C2}");
+            }
         }
 
         public string MakeChange()
