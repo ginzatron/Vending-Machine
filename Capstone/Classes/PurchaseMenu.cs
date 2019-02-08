@@ -88,7 +88,7 @@ namespace Capstone.Classes
                     Console.WriteLine(vendingMachine.MakeChange());
 
                     endingBalance = vendingMachine.Balance;
-                    
+
                     // create log with starting balance, final balance $0, and message
                     this.CreateLog(beginningBalance, endingBalance, "GIVE CHANGE");
 
