@@ -85,10 +85,17 @@ namespace Capstone.Classes
 
             while (true)
             {
-
+                int enteredBills = 0;
                 Console.Write("Please Enter Dollar Amount 1,2,5 or 10 $");
+                try
+                {
+                    enteredBills = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Choice not valid, please try again");
+                }
 
-                int enteredBills = int.Parse(Console.ReadLine());
                 if (nums.Contains(enteredBills))
                 {
                     this.Balance += enteredBills;
@@ -105,7 +112,11 @@ namespace Capstone.Classes
             string itemSlot = Console.ReadLine().ToUpper();
             Console.WriteLine();
 
-            if (this.stock.ContainsKey(itemSlot) && this.stock[itemSlot].Price < this.Balance && this.stock[itemSlot].Quantity > 0)
+            if (!this.stock.ContainsKey(itemSlot))
+            {
+                Console.WriteLine("Selection not valid");
+            }
+            else if (this.stock.ContainsKey(itemSlot) && this.stock[itemSlot].Price < this.Balance && this.stock[itemSlot].Quantity > 0)
             {
                 this.Balance -= this.stock[itemSlot].Price;
                 this.stock[itemSlot].Quantity--;
@@ -122,10 +133,6 @@ namespace Capstone.Classes
             else if (this.stock[itemSlot].Quantity == 0)
             {
                 Console.WriteLine("ITEM SOLD OUT!\n");
-            }
-            else if (!this.stock.ContainsKey(itemSlot))
-            {
-                Console.WriteLine("Selection not valid");
             }
 
             return this.Balance;
