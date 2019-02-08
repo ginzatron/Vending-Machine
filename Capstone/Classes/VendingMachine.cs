@@ -185,6 +185,7 @@ namespace Capstone.Classes
             {
                 item.MakeSound();
             }
+
             Console.WriteLine();
         }
     }
