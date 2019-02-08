@@ -43,6 +43,7 @@ namespace Capstone.Classes
                 }
             }
 
+            //computing total sale resport for life cycle of instantiated vending machine
             vendingMachine.TotalSalesReport();
         }
     }

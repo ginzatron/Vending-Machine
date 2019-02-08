@@ -100,7 +100,8 @@ namespace Capstone.Classes
 
             this.LoggingInfo = $"{itemSlot} {this.Stock[itemSlot].Name}";
 
-            if (!this.TotalSales.ContainsKey(itemSlot))
+            // populating total sales dictionary with item name as key and number purchased as value
+            if (!this.TotalSales.ContainsKey(name))
             {
                 this.TotalSales[name] = 1;
                 this.SalesOutput += this.Stock[itemSlot].Price;
@@ -120,7 +121,7 @@ namespace Capstone.Classes
 
             using (StreamWriter sr = new StreamWriter("salesReport.txt"))
             {
-                foreach (KeyValuePair<string,int> item in this.TotalSales)
+                foreach (KeyValuePair<string, int> item in this.TotalSales)
                 {
                     sr.WriteLine($"{item.Key}|{item.Value}");
                 }
