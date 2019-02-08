@@ -13,7 +13,7 @@ namespace Capstone.Classes
         {
             while (true)
             {
-                Console.WriteLine("1. Display Vengind Machinee Items.");
+                Console.WriteLine("1. Display Vending Machine Items.");
                 Console.WriteLine("2. Purchase Item(s)");
                 Console.WriteLine("Q  Quit");
                 Console.Write("Choice: ");

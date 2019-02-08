@@ -112,7 +112,6 @@ namespace Capstone.Classes
                 this.cart.Add(this.stock[itemSlot]);
 
                 this.LoggingInfo = $"{itemSlot} {this.stock[itemSlot].Name}";
-               
             }
             else if (this.stock[itemSlot].Price > this.Balance)
             {
