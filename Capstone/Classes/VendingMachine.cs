@@ -10,7 +10,7 @@ namespace Capstone.Classes
     public class VendingMachine
     {
         public Dictionary<string, Item> stock = new Dictionary<string, Item>();
-        private List<Item> cart = new List<Item>();
+        public List<Item> cart = new List<Item>();
 
         public decimal Balance { get; set; }
 
@@ -91,7 +91,6 @@ namespace Capstone.Classes
 
         public decimal SelectProduct(string itemSlot)
         {
-
             this.Balance -= this.stock[itemSlot].Price;
             this.stock[itemSlot].Quantity--;
 
@@ -101,14 +100,13 @@ namespace Capstone.Classes
             return this.Balance;
         }
 
-        public decimal MakeChange()
+        public string MakeChange()
         {
             this.Balance *= 100;
             int quarters = 0;
             int dimes = 0;
             int nickels = 0;
-
-            Console.WriteLine($"Here is the remaining balance of {this.Balance/100}");
+            string changeMessage = string.Empty;
 
             while (this.Balance > 0)
             {
@@ -128,14 +126,9 @@ namespace Capstone.Classes
                     this.Balance -= 5;
                 }
             }
+
             // Assigning these are for test purposes only
-            string changeMessage = $"{quarters} Quarter(s), {dimes} Dime(s), {nickels} Nickel(s)";
-            this.MakeChangeMessage = changeMessage;
-            Console.WriteLine(this.MakeChangeMessage);
-            Console.WriteLine($"{this.Balance:C2} remaining");
-            Console.WriteLine();
-            this.ConsumeItems();
-            return this.Balance;
+            return changeMessage = $"{quarters} Quarter(s), {dimes} Dime(s), {nickels} Nickel(s)";
         }
 
         public void ConsumeItems()

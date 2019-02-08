@@ -65,7 +65,7 @@ namespace Capstone.Classes
                     }
                     else if (vendingMachine.stock.ContainsKey(itemSlot) && vendingMachine.stock[itemSlot].Price < vendingMachine.Balance && vendingMachine.stock[itemSlot].Quantity > 0)
                     {
-                        //calling select product will return the update balance to be logged, log transaction
+                        // calling select product will return the update balance to be logged, log transaction
                         this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(itemSlot), vendingMachine.LoggingInfo);
                         Console.WriteLine($"{vendingMachine.stock[itemSlot].Name} purchased");
                     }
@@ -80,8 +80,16 @@ namespace Capstone.Classes
                 }
                 else if (choice == "3")
                 {
+                    decimal beginningBalance = vendingMachine.Balance;
+                    decimal endingBalance;
+                    Console.WriteLine($"Here is the remaining balance of ${vendingMachine.Balance}");
+                    Console.WriteLine(vendingMachine.MakeChange());
+                    endingBalance = vendingMachine.Balance;
                     // makes change on remaining balance
-                    this.CreateLog(vendingMachine.Balance, vendingMachine.MakeChange(), "GIVE CHANGE");
+                    this.CreateLog(vendingMachine.Balance, endingBalance, "GIVE CHANGE");
+
+                    vendingMachine.ConsumeItems();
+                    vendingMachine.cart.Clear();
                 }
                 else if (choice.ToLower() == "q")
                 {
