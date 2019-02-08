@@ -12,9 +12,15 @@ namespace Capstone.Classes
         private Dictionary<string, Item> stock = new Dictionary<string, Item>();
         private List<Item> cart = new List<Item>();
 
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; set; }
 
         public string LoggingInfo { get; set; }
+        // To test our make change
+        public int Quarters { get; private set; }
+
+        public int Dimes { get; private set; }
+
+        public int Nickels { get; private set; }
 
         /// <summary>
         /// Initializes new instance of VendingMachine.
@@ -165,7 +171,10 @@ namespace Capstone.Classes
                     this.Balance -= 5;
                 }
             }
-
+            // Assigning these are for test purposes only
+            this.Quarters = quarters;
+            this.Dimes = dimes;
+            this.Nickels = nickels;
             Console.WriteLine($"{quarters} Quarter(s), {dimes} Dime(s), {nickels} nickel(s)");
             Console.WriteLine($"{this.Balance:C2} remaining");
             Console.WriteLine();
