@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Capstone.Classes
 {
@@ -24,8 +25,33 @@ namespace Capstone.Classes
 
                 if (choice == "1")
                 {
-                    // both logs the activity to add funds and add funds to the balance
-                    this.CreateLog(vendingMachine.Balance, vendingMachine.AddFunds(), "FEED MONEY");
+                    List<int> nums = new List<int>() { 1, 2, 5, 10 };
+                    int enteredBills = 0;
+
+                    while (true)
+                    {
+                        Console.Write("Please Enter Dollar Amount 1,2,5 or 10 $");
+                        try
+                        {
+                            enteredBills = int.Parse(Console.ReadLine());
+                            break;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Choice not valid, please try again");
+                        }
+                    }
+
+                    if (nums.Contains(enteredBills))
+                    {
+                        // both logs the activity to add funds and add funds to the balance
+                        this.CreateLog(vendingMachine.Balance, vendingMachine.AddFunds(enteredBills), "FEED MONEY");
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid dollar amount");
+                    }
                 }
                 else if (choice == "2")
                 {

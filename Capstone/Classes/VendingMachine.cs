@@ -82,31 +82,11 @@ namespace Capstone.Classes
             Console.WriteLine();
         }
 
-        public decimal AddFunds()
+        public decimal AddFunds(int bill)
         {
-            List<int> nums = new List<int>() { 1, 2, 5, 10 };
+             this.Balance += bill;
 
-            while (true)
-            {
-                int enteredBills = 0;
-                Console.Write("Please Enter Dollar Amount 1,2,5 or 10 $");
-                try
-                {
-                    enteredBills = int.Parse(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Choice not valid, please try again");
-                }
-
-                if (nums.Contains(enteredBills))
-                {
-                    this.Balance += enteredBills;
-                }
-
-                Console.Clear();
-                return this.Balance;
-            }
+             return this.Balance;
         }
 
         public decimal SelectProduct()
