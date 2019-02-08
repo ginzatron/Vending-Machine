@@ -58,7 +58,7 @@ namespace Capstone.Classes
         /// <param name="logAction">log activity</param>
         public void CreateLog(decimal totalBalance, decimal updatedBalance, string logAction)
         {
-            string logMessage = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm")} {totalBalance} {updatedBalance} {logAction}";
+            string logMessage = $"{DateTime.Now.ToString("MM/dd/yyyy HH:mm")} ${totalBalance, -6} ${updatedBalance, -6} {logAction, 1}";
 
             try
             {
