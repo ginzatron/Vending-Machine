@@ -23,6 +23,7 @@ namespace Capstone.Classes
                 if (choice == "1")
                 {
                     // Display read in inventory
+                    Console.Clear();
                     vendingMachine.DisplayItems();
                 }
                 else if (choice == "2")

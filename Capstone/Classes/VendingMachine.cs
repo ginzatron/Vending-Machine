@@ -85,7 +85,9 @@ namespace Capstone.Classes
 
             while (true)
             {
+
                 Console.Write("Please Enter Dollar Amount 1,2,5 or 10 $");
+
                 int enteredBills = int.Parse(Console.ReadLine());
                 if (nums.Contains(enteredBills))
                 {
@@ -166,10 +168,12 @@ namespace Capstone.Classes
 
         public void ConsumeItems()
         {
+            Console.WriteLine("Time to mange!");
             foreach (Item item in this.cart)
             {
                 item.MakeSound();
             }
+            Console.WriteLine();
         }
     }
 }
