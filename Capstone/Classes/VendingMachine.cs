@@ -16,11 +16,8 @@ namespace Capstone.Classes
 
         public string LoggingInfo { get; set; }
         // To test our make change
-        public int Quarters { get; private set; }
 
-        public int Dimes { get; private set; }
-
-        public int Nickels { get; private set; }
+        public string MakeChangeMessage { get; private set; }
 
         /// <summary>
         /// Initializes new instance of VendingMachine.
@@ -172,10 +169,9 @@ namespace Capstone.Classes
                 }
             }
             // Assigning these are for test purposes only
-            this.Quarters = quarters;
-            this.Dimes = dimes;
-            this.Nickels = nickels;
-            Console.WriteLine($"{quarters} Quarter(s), {dimes} Dime(s), {nickels} nickel(s)");
+            string changeMessage = $"{quarters} Quarter(s), {dimes} Dime(s), {nickels} Nickel(s)";
+            this.MakeChangeMessage = changeMessage;
+            Console.WriteLine(this.MakeChangeMessage);
             Console.WriteLine($"{this.Balance:C2} remaining");
             Console.WriteLine();
             this.ConsumeItems();
