@@ -9,7 +9,7 @@ namespace Capstone.Classes
     /// </summary>
     public class VendingMachine
     {
-        private Dictionary<string, Item> stock = new Dictionary<string, Item>();
+        public Dictionary<string, Item> stock = new Dictionary<string, Item>();
         private List<Item> cart = new List<Item>();
 
         public decimal Balance { get; set; }
@@ -89,35 +89,15 @@ namespace Capstone.Classes
              return this.Balance;
         }
 
-        public decimal SelectProduct()
+        public decimal SelectProduct(string itemSlot)
         {
-            Console.Write("Please enter LetterNumber item slot to purchase from: ");
-            string itemSlot = Console.ReadLine().ToUpper();
-            Console.WriteLine();
 
-            if (!this.stock.ContainsKey(itemSlot))
-            {
-                Console.WriteLine("Selection not valid");
-            }
-            else if (this.stock.ContainsKey(itemSlot) && this.stock[itemSlot].Price < this.Balance && this.stock[itemSlot].Quantity > 0)
-            {
-                this.Balance -= this.stock[itemSlot].Price;
-                this.stock[itemSlot].Quantity--;
+            this.Balance -= this.stock[itemSlot].Price;
+            this.stock[itemSlot].Quantity--;
 
-                Console.WriteLine($"{this.stock[itemSlot].Name} purchased");
-                this.cart.Add(this.stock[itemSlot]);
+            this.cart.Add(this.stock[itemSlot]);
 
-                this.LoggingInfo = $"{itemSlot} {this.stock[itemSlot].Name}";
-            }
-            else if (this.stock[itemSlot].Price > this.Balance)
-            {
-                Console.WriteLine("PLEASE ADD MORE FUNDS!\n");
-            }
-            else if (this.stock[itemSlot].Quantity == 0)
-            {
-                Console.WriteLine("ITEM SOLD OUT!\n");
-            }
-
+            this.LoggingInfo = $"{itemSlot} {this.stock[itemSlot].Name}";
             return this.Balance;
         }
 

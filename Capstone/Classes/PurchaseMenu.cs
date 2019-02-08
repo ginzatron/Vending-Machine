@@ -55,8 +55,28 @@ namespace Capstone.Classes
                 }
                 else if (choice == "2")
                 {
-                    // logs product ID choice
-                    this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(), vendingMachine.LoggingInfo);
+                    Console.Write("Please enter LetterNumber item slot to purchase from: ");
+                    string itemSlot = Console.ReadLine().ToUpper();
+                    Console.WriteLine();
+
+                    if (!vendingMachine.stock.ContainsKey(itemSlot))
+                    {
+                        Console.WriteLine("Selection not valid");
+                    }
+                    else if (vendingMachine.stock.ContainsKey(itemSlot) && vendingMachine.stock[itemSlot].Price < vendingMachine.Balance && vendingMachine.stock[itemSlot].Quantity > 0)
+                    {
+                        //calling select product will return the update balance to be logged, log transaction
+                        this.CreateLog(vendingMachine.Balance, vendingMachine.SelectProduct(itemSlot), vendingMachine.LoggingInfo);
+                        Console.WriteLine($"{vendingMachine.stock[itemSlot].Name} purchased");
+                    }
+                    else if (vendingMachine.stock[itemSlot].Price > vendingMachine.Balance)
+                    {
+                        Console.WriteLine("PLEASE ADD MORE FUNDS!\n");
+                    }
+                    else if (vendingMachine.stock[itemSlot].Quantity == 0)
+                    {
+                        Console.WriteLine("ITEM SOLD OUT!\n");
+                    }
                 }
                 else if (choice == "3")
                 {
